@@ -54,7 +54,5 @@ module.exports = generators.Base.extend({
                 }
             );
         }
-
-        this.log(this.hasView, this.hasStyles);
     }
 });
