@@ -32,7 +32,7 @@ module.exports = generators.Base.extend({
                 this.templatePath('_ng.component.js'),
                 this.destinationPath(this.fileName + '.component.js'),
                 {
-                    name: this.name
+                    name: this.name,
                 }
             );
         },
