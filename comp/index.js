@@ -7,6 +7,7 @@ module.exports = generators.Base.extend({
     constructor: function() {
         generators.Base.apply(this, arguments);
         this.argument('name', {type: String, required: true});
+        this.fileName = _.kebabCase(this.name);
     },
     prompting: function() {
         this.log(yosay(`Let\'s cook up your ${chalk.cyan(this.name)} Component`));
@@ -25,34 +26,37 @@ module.exports = generators.Base.extend({
             done();
         });
     },
-    writing: function() {
-        const fileName = _.kebabCase(this.name);
-        this.fs.copyTpl(
-            this.templatePath('_ng.component.js'),
-            this.destinationPath(fileName + '.component.js'),
-            {
-                name: this.name
+    writing: {
+        scripts: function() {
+            this.fs.copyTpl(
+                this.templatePath('_ng.component.js'),
+                this.destinationPath(this.fileName + '.component.js'),
+                {
+                    name: this.name
+                }
+            );
+        },
+        html: function() {
+            if(this.hasView) {
+                this.fs.copyTpl(
+                    this.templatePath('_ng.component.html'),
+                    this.destinationPath(this.fileName + '.component.html'),
+                    {
+                        name: this.name
+                    }
+                );
             }
-        );
-
-        if(this.hasView) {
-            this.fs.copyTpl(
-                this.templatePath('_ng.component.html'),
-                this.destinationPath(fileName + '.component.html'),
-                {
-                    name: this.name
-                }
-            );
-        }
-
-        if(this.hasStyles) {
-            this.fs.copyTpl(
-                this.templatePath('_ng.component.scss'),
-                this.destinationPath(fileName + '.component.scss'),
-                {
-                    name: this.name
-                }
-            );
+        },
+        styles: function() {
+            if(this.hasStyles) {
+                this.fs.copyTpl(
+                    this.templatePath('_ng.component.scss'),
+                    this.destinationPath(this.fileName + '.component.scss'),
+                    {
+                        name: this.name
+                    }
+                );
+            }
         }
     }
 });
