@@ -9,7 +9,17 @@ module.exports = generators.Base.extend({
         this.argument('name', { type: String, required: true });
     },
     prompting: function() {
+        this.log(yosay('Let\'s build your ' + chalk.cyan(this.name) + ' Component'));
 
+        this.prompt([
+            {
+                type: 'confirm',
+                name: 'hasView',
+                message: 'Do you want a corresponding view?'
+            }
+        ]).then(function(answers) {
+            this.log(answers)
+        }.bind(this));
     },
     writing: function() {
 
