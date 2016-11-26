@@ -28,18 +28,28 @@ module.exports = generators.Base.extend({
     },
     writing: {
         scripts: function() {
-            this.fs.copyTpl(
-                this.templatePath('_ng.component.js'),
-                this.destinationPath(this.fileName + '.component.js'),
-                {
-                    name: this.name,
-                }
-            );
+            if (this.hasView) {
+                this.fs.copyTpl(
+                    this.templatePath('_view.component.js'),
+                    this.destinationPath(this.fileName + '.component.js'),
+                    {
+                        name: this.name,
+                    }
+                );
+            } else {
+                this.fs.copyTpl(
+                    this.templatePath('_component.js'),
+                    this.destinationPath(this.fileName + '.component.js'),
+                    {
+                        name: this.name,
+                    }
+                );
+            }
         },
         html: function() {
-            if(this.hasView) {
+            if (this.hasView) {
                 this.fs.copyTpl(
-                    this.templatePath('_ng.component.html'),
+                    this.templatePath('_component.html'),
                     this.destinationPath(this.fileName + '.component.html'),
                     {
                         name: this.name
@@ -48,9 +58,9 @@ module.exports = generators.Base.extend({
             }
         },
         styles: function() {
-            if(this.hasStyles) {
+            if (this.hasStyles) {
                 this.fs.copyTpl(
-                    this.templatePath('_ng.component.scss'),
+                    this.templatePath('_component.scss'),
                     this.destinationPath(this.fileName + '.component.scss'),
                     {
                         name: this.name

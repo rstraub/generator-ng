@@ -1,10 +1,8 @@
 class <%= name %>Ctrl {
     constructor() {
-        this.name = '<%= name %>';
+        this.name = <%= name %>Ctrl;
     }
 }
-
-<%= name %>Ctrl.$inject = [];
 
 export default {
     bindings: {},
