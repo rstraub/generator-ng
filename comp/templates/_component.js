@@ -1,6 +1,6 @@
 class <%= name %>Ctrl {
     constructor() {
-        this.name = <%= name %>Ctrl;
+        this.name = '<%= name %>';
     }
 }
 
