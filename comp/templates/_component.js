@@ -7,4 +7,4 @@ class <%= name %>Ctrl {
 export default {
     bindings: {},
     controller: <%= name %>Ctrl
-}
+};

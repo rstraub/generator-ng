@@ -1,4 +1,4 @@
-import './<%= name.toLowerCase() %>.component.html';
+import './<%= importName %>.component.html';
 
 class <%= name %>Ctrl {
     constructor() {
@@ -10,6 +10,6 @@ class <%= name %>Ctrl {
 
 export default {
     bindings: {},
-    templateUrl: './<%= name.toLowerCase() %>.component.html',
+    templateUrl: './<%= importName %>.component.html',
     controller: <%= name %>Ctrl
-}
+};

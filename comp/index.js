@@ -34,6 +34,7 @@ module.exports = generators.Base.extend({
                     this.destinationPath(this.fileName + '.component.js'),
                     {
                         name: this.name,
+                        importName: _.kebabCase(this.name)
                     }
                 );
             } else {
